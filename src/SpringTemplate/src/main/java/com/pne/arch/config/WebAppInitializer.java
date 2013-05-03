@@ -16,21 +16,19 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
+		createRootContext(servletContext);
+		createMvcContext(servletContext);
+		configureContextParameters(servletContext);
+		registerFilters(servletContext);
+	}
 
+	private void createRootContext(ServletContext servletContext) {
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-		rootContext.register(RootConfig.class); //Poderia também substituir por: rootContext.setConfigLocation("com.pne.arch.config");
-
-		FilterRegistration.Dynamic securityFilter = servletContext.addFilter("securityFilter", new DelegatingFilterProxy("springSecurityFilterChain"));
-		securityFilter.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
-
-		FilterRegistration.Dynamic characterEncodingFilter = servletContext.addFilter("characterEncodingFilter", new CharacterEncodingFilter());
-		characterEncodingFilter.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
-		characterEncodingFilter.setInitParameter("encoding", "UTF-8");
-		characterEncodingFilter.setInitParameter("forceEncoding", "true");
-
+		rootContext.register(RootConfig.class); //Also valid: rootContext.setConfigLocation("com.pne.arch.config");
 		servletContext.addListener(new ContextLoaderListener(rootContext));
-		servletContext.setInitParameter("defaultHtmlEscape", "true");
+	}
 
+	private void createMvcContext(ServletContext servletContext) {
 		AnnotationConfigWebApplicationContext mvcContext = new AnnotationConfigWebApplicationContext();
 		mvcContext.register(WebMvcConfig.class);
 
@@ -41,5 +39,26 @@ public class WebAppInitializer implements WebApplicationInitializer {
 		if (!mappingConflicts.isEmpty()) {
 			throw new IllegalStateException("'appServlet' cannot be mapped to '/' under Tomcat versions <= 7.0.14");
 		}
+	}
+
+	private void configureContextParameters(ServletContext servletContext) {
+		servletContext.setInitParameter("defaultHtmlEscape", "true");
+	}
+
+	private void registerFilters(ServletContext servletContext) {
+		registerSpringSecurityFilter(servletContext);
+		registerEncodingFilter(servletContext);
+	}
+
+	private void registerSpringSecurityFilter(ServletContext servletContext) {
+		FilterRegistration.Dynamic securityFilter = servletContext.addFilter("securityFilter", new DelegatingFilterProxy("springSecurityFilterChain"));
+		securityFilter.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
+	}
+
+	private void registerEncodingFilter(ServletContext servletContext) {
+		FilterRegistration.Dynamic characterEncodingFilter = servletContext.addFilter("characterEncodingFilter", new CharacterEncodingFilter());
+		characterEncodingFilter.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
+		characterEncodingFilter.setInitParameter("encoding", "UTF-8");
+		characterEncodingFilter.setInitParameter("forceEncoding", "true");
 	}
 }
