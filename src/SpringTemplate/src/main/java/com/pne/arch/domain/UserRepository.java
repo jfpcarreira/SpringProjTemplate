@@ -1,6 +1,8 @@
 package com.pne.arch.domain;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,4 @@ public class UserRepository {
 			return null;
 		}
 	}
-
-	
 }
