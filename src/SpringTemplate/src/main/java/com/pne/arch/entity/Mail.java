@@ -1,4 +1,4 @@
-package com.pne.arch.model;
+package com.pne.arch.entity;
 
 public class Mail {
 

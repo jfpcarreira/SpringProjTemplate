@@ -11,18 +11,19 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 @Configuration
-@ComponentScan(basePackages = { "com.pne.arch.web" })
+@EnableWebMvc
+@ComponentScan(basePackages = { "com.pne.arch.controller" })
 public class WebMvcConfig extends WebMvcConfigurationSupport {
 
 	private static final String MESSAGE_SOURCE = "/WEB-INF/classes/i18n/messages";
-	private static final String TILES = "/WEB-INF/tiles/tiles.xml";
-	private static final String VIEWS = "/WEB-INF/views/**/views.xml";
+	private static final String TILES = "/WEB-INF/tiles2/tiles.xml";
+//	private static final String VIEWS = "/WEB-INF/views/**/views.xml";
 
 	@Override
 	public RequestMappingHandlerMapping requestMappingHandlerMapping() {
 		RequestMappingHandlerMapping requestMappingHandlerMapping = super.requestMappingHandlerMapping();
-		requestMappingHandlerMapping.setUseSuffixPatternMatch(false);
-		requestMappingHandlerMapping.setUseTrailingSlashMatch(false);
+//		requestMappingHandlerMapping.setUseSuffixPatternMatch(false);
+//		requestMappingHandlerMapping.setUseTrailingSlashMatch(false);
 		return requestMappingHandlerMapping;
 	}
 
@@ -34,7 +35,8 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 	@Bean
 	public TilesConfigurer configureTilesConfigurer() {
 		TilesConfigurer configurer = new TilesConfigurer();
-		configurer.setDefinitions(new String[] {TILES, VIEWS});
+		configurer.setDefinitions(new String[] {TILES});
+//		configurer.setDefinitions(new String[] {TILES, VIEWS});
 		return configurer;
 	}
 
@@ -66,4 +68,5 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
+
 }

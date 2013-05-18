@@ -24,4 +24,15 @@ public class PropertiesConstant {
 	// Entity manager
 	public static final String ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";
 
+    // Mail
+    public static final String MAIL_HOST = "mail.host";
+    public static final String MAIL_PORT = "mail.port";
+    public static final String MAIL_USERNAME = "mail.username";
+    public static final String MAIL_PASSWORD = "mail.password";
+    public static final String MAIL_TRANSP_PROTOCOL = "mail.transport.protocol";
+    public static final String MAIL_SMTP_AUTH = "mail.smtp.auth";
+    public static final String MAIL_STMP_STARTTLS = "mail.smtp.starttls.enable";
+    public static final String MAIL_FROM_DEFAULT = "mail.from.default";
+    public static final String MAIL_TO_DEFAULT = "mail.to.default";
+
 }

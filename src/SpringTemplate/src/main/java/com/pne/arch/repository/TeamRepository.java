@@ -1,10 +1,10 @@
-package com.pne.arch.dao;
+package com.pne.arch.repository;
 
 import java.util.List;
 
-import com.pne.arch.model.Team;
+import com.pne.arch.entity.Team;
 
-public interface TeamDAO {
+public interface TeamRepository {
 
 	public void addTeam(Team team);
 	public void updateTeam(Team team);

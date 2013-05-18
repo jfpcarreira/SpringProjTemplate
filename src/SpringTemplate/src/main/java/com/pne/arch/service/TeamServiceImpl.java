@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.pne.arch.dao.TeamDAO;
-import com.pne.arch.model.Team;
+import com.pne.arch.entity.Team;
+import com.pne.arch.repository.TeamRepository;
 
 @Service
 @Transactional
 public class TeamServiceImpl implements TeamService {
 
 	@Autowired
-	private TeamDAO teamDAO;
+	private TeamRepository teamDAO;
 
 	public void addTeam(Team team) {
 		teamDAO.addTeam(team);		

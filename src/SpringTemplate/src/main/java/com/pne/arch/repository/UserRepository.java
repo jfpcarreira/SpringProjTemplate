@@ -1,4 +1,4 @@
-package com.pne.arch.domain;
+package com.pne.arch.repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -6,6 +6,8 @@ import javax.persistence.PersistenceException;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.pne.arch.entity.User;
 
 @Repository
 @Transactional(readOnly = true)

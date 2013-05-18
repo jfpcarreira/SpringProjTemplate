@@ -1,4 +1,4 @@
-package com.pne.arch.model;
+package com.pne.arch.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

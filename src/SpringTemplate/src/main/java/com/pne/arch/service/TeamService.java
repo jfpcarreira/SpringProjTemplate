@@ -2,7 +2,7 @@ package com.pne.arch.service;
 
 import java.util.List;
 
-import com.pne.arch.model.Team;
+import com.pne.arch.entity.Team;
 
 public interface TeamService {
 

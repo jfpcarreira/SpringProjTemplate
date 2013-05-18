@@ -1,4 +1,4 @@
-package com.pne.arch.domain;
+package com.pne.arch.service;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.*;
@@ -17,9 +17,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.pne.arch.domain.User;
-import com.pne.arch.domain.UserRepository;
-import com.pne.arch.domain.UserService;
+import com.pne.arch.entity.User;
+import com.pne.arch.repository.UserRepository;
+import com.pne.arch.service.UserService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {

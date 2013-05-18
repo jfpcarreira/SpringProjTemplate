@@ -1,6 +1,6 @@
 package com.pne.arch.service;
 
-import com.pne.arch.model.Mail;
+import com.pne.arch.entity.Mail;
 
 public interface MailService {
 

@@ -10,7 +10,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import com.pne.arch.model.Mail;
+import com.pne.arch.entity.Mail;
 
 @Service
 public class MailServiceImpl implements MailService {
@@ -41,7 +41,7 @@ public class MailServiceImpl implements MailService {
 		mail.setTo(to);
 		mail.setSubject(subject);
 		mail.setText(text);
-		
+
 		this.sendMail(mail);
 	}
 
@@ -76,16 +76,16 @@ public class MailServiceImpl implements MailService {
 
 	private String getHtmlMail() {
 		StringBuffer str = new StringBuffer();
-		
+
 		str.append("<h2>Hello World!</h2><br/>");
-		str.append("<h3>Isto � um teste ao mail HTML</h3><br/>");
+		str.append("<h3>Isto é um teste ao mail HTML</h3><br/>");
 		str.append("<table border=\"1\">");
 		str.append("<tr><td>col1</td><td>col2</td><td>col3</td></tr>");
 		str.append("<tr><td>linha1</td><td>linha1</td><td>linha1</td></tr>");
 		str.append("<tr><td>linha2</td><td>linha2</td><td>linha2</td></tr>");
 		str.append("<tr><td>linha3</td><td>linha3</td><td>linha3</td></tr>");
 		str.append("</table>");
-		
+
 		return str.toString();
 	}
 }

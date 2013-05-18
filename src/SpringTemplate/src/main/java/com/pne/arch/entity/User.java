@@ -1,4 +1,4 @@
-package com.pne.arch.domain;
+package com.pne.arch.entity;
 
 import javax.persistence.*;
 
