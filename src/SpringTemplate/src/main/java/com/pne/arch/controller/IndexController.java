@@ -22,4 +22,8 @@ public class IndexController {
 		return "home";
 	}
 
+	@RequestMapping(value="/welcome")
+	public String welcome(Model model) {
+		return "welcome";
+	}
 }

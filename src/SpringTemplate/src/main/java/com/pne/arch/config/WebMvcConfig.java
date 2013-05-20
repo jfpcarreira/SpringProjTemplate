@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 public class WebMvcConfig extends WebMvcConfigurationSupport {
 
 	private static final String MESSAGE_SOURCE = "/WEB-INF/classes/i18n/messages";
-	private static final String TILES = "/WEB-INF/tiles2/tiles.xml";
+	private static final String TILES = "/WEB-INF/tiles/tiles.xml";
 //	private static final String VIEWS = "/WEB-INF/views/**/views.xml";
 
 	@Override
