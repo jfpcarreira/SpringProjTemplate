@@ -26,4 +26,10 @@ public class IndexController {
 	public String welcome(Model model) {
 		return "welcome";
 	}
+
+	@RequestMapping(value="/generalError")
+	public String generalError(Model model) {
+		return "generalErrorPage";
+	}
+
 }

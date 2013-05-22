@@ -49,5 +49,10 @@
         <put-attribute name="title" value="Send HTML mail" />
         <put-attribute name="body" value="/WEB-INF/views/send_html_mail.jsp" />
     </definition>
- 
+
+    <definition name="generalErrorPage" extends="base.definition">
+        <put-attribute name="title" value="ERROR!!!" />
+        <put-attribute name="body" value="/WEB-INF/views/error/general_error_page.jsp" />
+    </definition>
+
 </tiles-definitions>

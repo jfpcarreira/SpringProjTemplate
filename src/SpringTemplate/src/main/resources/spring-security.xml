@@ -15,7 +15,10 @@
 		<security:form-login
 			login-page="/login"
 			default-target-url="/welcome.htm"
-			authentication-failure-url="/login.htm" />
+			authentication-failure-url="/login.htm"
+			username-parameter="username"
+			password-parameter="password"
+			login-processing-url="/process_login"/>
 
 		<security:logout
 			invalidate-session="true"
