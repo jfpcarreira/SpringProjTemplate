@@ -3,11 +3,13 @@ package com.pne.arch.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pne.arch.entity.Team;
@@ -21,6 +23,7 @@ public class TeamController {
 	private TeamService teamService;
 
 	@RequestMapping(value="/add")
+	@PreAuthorize("hasRole('ROLE_ADMIN')") // Não funciona
 	public ModelAndView addTeamPage() {
 		ModelAndView modelAndView = new ModelAndView("add_team");
 		modelAndView.addObject("team", new Team());
@@ -42,7 +45,7 @@ public class TeamController {
 	}
 
 	@RequestMapping(value="/list")
-	public ModelAndView listOfTeams() {
+	public ModelAndView listTeams() {
 		ModelAndView modelAndView = new ModelAndView("list_teams");
 
 		List<Team> teams = teamService.getTeams();
@@ -86,4 +89,10 @@ public class TeamController {
 		return modelAndView;
 	}
 
+	// Não funciona
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public @ResponseBody Team getTeam(@PathVariable Integer id) {
+		Team team = teamService.getTeam(id);
+		return team;
+	}
 }

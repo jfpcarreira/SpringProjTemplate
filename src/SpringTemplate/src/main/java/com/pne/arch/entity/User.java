@@ -1,6 +1,16 @@
 package com.pne.arch.entity;
 
-import javax.persistence.*;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "user")
@@ -18,18 +28,17 @@ public class User {
 
 	private String password;
 
-	private String role = "ROLE_USER";
-	
 	private String name;
 	
-	protected User() {
-
-	}
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Role> roles;
 	
-	public User(String username, String password, String role) {
+	protected User() {}
+	
+	public User(String username, String password, Set<Role> roles) {
 		this.username = username;
 		this.password = password;
-		this.role = role;
+		this.roles = roles;
 	}
 
 	public Long getId() {
@@ -60,11 +69,12 @@ public class User {
 		this.password = password;
 	}
 
-	public String getRole() {
-		return role;
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
+
 }

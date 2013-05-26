@@ -1,10 +1,15 @@
 package com.pne.arch.service;
 
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -17,9 +22,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import com.pne.arch.entity.Role;
 import com.pne.arch.entity.User;
 import com.pne.arch.repository.UserRepository;
-import com.pne.arch.service.UserService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
@@ -35,8 +40,6 @@ public class UserServiceTest {
 
 	@Test
 	public void shouldInitializeWithOneDemoUser() {
-		// act
-		userService.initialize();
 		// assert
 		verify(userRepositoryMock, times(1)).save(any(User.class));
 	}
@@ -55,7 +58,7 @@ public class UserServiceTest {
 	@Test
 	public void shouldReturnUserDetails() {
 		// arrange
-		User demoUser = new User("user", "demo", "ROLE_USER");
+		User demoUser = new User("user", "demo", new HashSet<Role>());
 		when(userRepositoryMock.findByUsername("user")).thenReturn(demoUser);
 
 		// act
@@ -64,13 +67,13 @@ public class UserServiceTest {
 		// assert
 		assertEquals(demoUser.getUsername(), userDetails.getUsername());
 		assertEquals(demoUser.getPassword(), userDetails.getPassword());
-		assertTrue(hasAuthority(userDetails, demoUser.getRole()));
+		assertTrue(hasAuthority(userDetails, demoUser.getRoles()));
 	}
 
-	private boolean hasAuthority(UserDetails userDetails, String role) {
+	private boolean hasAuthority(UserDetails userDetails, Set<Role> roles) {
 		Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
 		for(GrantedAuthority authority : authorities) {
-			if(authority.getAuthority().equals(role)) {
+			if(authority.getAuthority().equals(roles)) {
 				return true;
 			}
 		}

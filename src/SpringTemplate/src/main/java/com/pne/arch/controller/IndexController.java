@@ -29,7 +29,11 @@ public class IndexController {
 
 	@RequestMapping(value="/generalError")
 	public String generalError(Model model) {
-		return "generalErrorPage";
+		return "generalError";
 	}
 
+	@RequestMapping(value="/accessDenied")
+	public String accessDeniedError(Model model) {
+		return "accessDenied";
+	}
 }

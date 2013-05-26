@@ -50,9 +50,14 @@
         <put-attribute name="body" value="/WEB-INF/views/send_html_mail.jsp" />
     </definition>
 
-    <definition name="generalErrorPage" extends="base.definition">
+    <definition name="generalError" extends="base.definition">
         <put-attribute name="title" value="ERROR!!!" />
-        <put-attribute name="body" value="/WEB-INF/views/error/general_error_page.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/error/general_error.jsp" />
+    </definition>
+
+    <definition name="accessDenied" extends="base.definition">
+        <put-attribute name="title" value="ERROR!!!" />
+        <put-attribute name="body" value="/WEB-INF/views/error/access_denied.jsp" />
     </definition>
 
 </tiles-definitions>

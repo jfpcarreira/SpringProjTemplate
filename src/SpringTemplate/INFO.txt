@@ -1,6 +1,8 @@
 Spring Security
 - Used SHA-256 with SALT to encrypt user password (password{user})
 - Changed default parameters user, pass and url
+- Using Roles and Permissions
+- Defined an access denied page
 
 General
 - Added general error page
